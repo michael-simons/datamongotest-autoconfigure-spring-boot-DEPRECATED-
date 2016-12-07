@@ -141,64 +141,64 @@
                 </executions>
             </plugin>
 
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-failsafe-plugin</artifactId>
-            <executions>
-                <execution>
-                    <goals>
-                        <goal>integration-test</goal>
-                        <goal>verify</goal>
-                    </goals>
-                </execution>
-            </executions>
-            <configuration>
-                <forkCount>1</forkCount>
-                <reuseForks>true</reuseForks>
-                <environmentVariables>
-                    <it-database.port>${it-database.port}</it-database.port>
-                </environmentVariables>
-            </configuration>
-        </plugin>
-        <plugin>
-            <groupId>io.fabric8</groupId>
-            <artifactId>docker-maven-plugin</artifactId>
-            <version>0.17.1</version>
-            <executions>
-                <execution>
-                    <id>prepare-it-database</id>
-                    <phase>pre-integration-test</phase>
-                    <goals>
-                        <goal>start</goal>
-                    </goals>
-                    <configuration>
-                        <images>
-                            <image>
-                                <name>mongo:3.2.11</name>
-                                <alias>it-database</alias>
-                                <run>
-                                    <ports>
-                                        <port>it-database.port:27017</port>
-                                    </ports>
-                                    <wait>
-                                        <log>waiting for connections on port 27017</log>
-                                        <time>60000</time>
-                                    </wait>
-                                </run>
-                            </image>
-                        </images>
-                    </configuration>
-                </execution>
-                <execution>
-                    <id>remove-it-database</id>
-                    <phase>post-integration-test</phase>
-                    <goals>
-                        <goal>stop</goal>
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
-    </plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <forkCount>1</forkCount>
+                    <reuseForks>true</reuseForks>
+                    <environmentVariables>
+                        <it-database.port>${it-database.port}</it-database.port>
+                    </environmentVariables>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.17.1</version>
+                <executions>
+                    <execution>
+                        <id>prepare-it-database</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                        <configuration>
+                            <images>
+                                <image>
+                                    <name>mongo:3.2.11</name>
+                                    <alias>it-database</alias>
+                                    <run>
+                                        <ports>
+                                            <port>it-database.port:27017</port>
+                                        </ports>
+                                        <wait>
+                                            <log>waiting for connections on port 27017</log>
+                                            <time>60000</time>
+                                        </wait>
+                                    </run>
+                                </image>
+                            </images>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>remove-it-database</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
 
     <dependencies>
@@ -227,4 +227,11 @@
             </plugin>
         </plugins>
     </reporting>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
