@@ -39,7 +39,7 @@ import org.springframework.test.context.BootstrapWith;
 @Inherited
 @BootstrapWith(SpringBootTestContextBootstrapper.class)
 @OverrideAutoConfiguration(enabled = false)
-@TypeExcludeFilters(ac.simons.spring.boot.test.autoconfigure.data.mongo.DataMongoTypeExcludeFilter.class)
+@TypeExcludeFilters(DataMongoTypeExcludeFilter.class)
 @AutoConfigureCache
 @AutoConfigureDataMongo
 @ImportAutoConfiguration
