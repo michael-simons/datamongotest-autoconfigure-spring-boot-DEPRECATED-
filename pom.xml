@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>eu.michael-simons</groupId>
     <artifactId>datamongotest-autoconfigure-spring-boot</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
 
     <prerequisites>
@@ -18,7 +18,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.4.2.RELEASE</version>
-        <relativePath/>
+        <relativePath />
     </parent>
 
     <inceptionYear>2016</inceptionYear>
@@ -46,7 +46,7 @@
         <connection>scm:git:git@github.com:michael-simons/datamongotest-autoconfigure-spring-boot.git</connection>
         <developerConnection>scm:git:git@github.com:michael-simons/datamongotest-autoconfigure-spring-boot.git</developerConnection>
         <url>https://github.com/michael-simons/datamongotest-autoconfigure-spring-boot</url>
-        <tag>HEAD</tag>
+        <tag>0.0.1</tag>
     </scm>
 
     <build>
