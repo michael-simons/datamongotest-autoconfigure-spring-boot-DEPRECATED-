@@ -18,39 +18,59 @@ package ac.simons.spring.boot.test.autoconfigure.data.mongo;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * Sample test for {@link DataMongoTest @DataMongoTest}
- * 
+ *
  * @author Michael J. Simons
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = TestConfig.class)
 @ActiveProfiles("it")
 @DataMongoTest
+@AutoConfigureEmbeddedTestMongod(enabled = false)
 public class DataMongoTestSampleIT {
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     @Autowired
     private MongoTemplate mongoTemplate;
-    
+
     @Autowired
     private TweetRepository tweetRepository;
+    
+    @Autowired
+    private ApplicationContext applicationContext;
 
     @Test
     public void testStuff() {
         TweetDocument tweet = new TweetDocument();
         tweet.setText("Look, new @DataMongoTest!");
-        
+
         tweet = this.tweetRepository.save(tweet);
         assertThat(tweet.getId(), notNullValue());
-        
+
         assertTrue(this.mongoTemplate.collectionExists("tweets"));
+    }
+
+    @Test
+    public void didNotInjectExampleController() {
+        this.thrown.expect(NoSuchBeanDefinitionException.class);
+        this.applicationContext.getBean(ExampleController.class);
+    }
+
+    @Configuration
+    static class Config {
     }
 }

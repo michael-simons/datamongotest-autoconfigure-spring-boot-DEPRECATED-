@@ -15,8 +15,13 @@
  */
 package ac.simons.spring.boot.test.autoconfigure.data.mongo;
 
+import org.springframework.stereotype.Controller;
+
 /**
- * @author Michael J. Simons, 2016-12-07
+ * Example controller used for testing purposes.
+ * 
+ * @author Michael J. Simons, 2016-12-08
  */
-public class TestConfig {
+@Controller
+public class ExampleController {
 }

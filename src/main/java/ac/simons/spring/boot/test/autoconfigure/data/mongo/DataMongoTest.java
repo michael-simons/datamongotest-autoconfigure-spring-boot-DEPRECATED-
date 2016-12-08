@@ -41,6 +41,7 @@ import org.springframework.test.context.BootstrapWith;
 @OverrideAutoConfiguration(enabled = false)
 @TypeExcludeFilters(DataMongoTypeExcludeFilter.class)
 @AutoConfigureCache
+@AutoConfigureEmbeddedTestMongod
 @AutoConfigureDataMongo
 @ImportAutoConfiguration
 public @interface DataMongoTest {
