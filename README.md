@@ -2,6 +2,8 @@
 
 Provides a `@DataMongoTest` for the automatic configuration of tests with Spring Boot 1.4+.
 
+*Note*: I have proposed this as a PR for Spring Boot itself: [Provide a @DataMongoTest similar to @DataJpaTest](https://github.com/spring-projects/spring-boot/pull/7600)
+
 ## Introduction
 
 Spring Boot 1.4 brought a new feature called [Auto-configured tests](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-1.4-Release-Notes#auto-configured-tests). 
@@ -81,3 +83,11 @@ Or you might consider adding
 ```
 
 to your test dependencies. This activates Spring Boot support for an embedded MongoDB process and you end up with an embedded Mongo connection like you do when using `@DataJpaTest` where you get an H2 embedded database.
+
+If you don't want this and but have embedded Mongo on your path, consider adding
+
+```java
+@AutoConfigureEmbeddedTestMongod(enabled = false)
+```
+
+to your test as well.

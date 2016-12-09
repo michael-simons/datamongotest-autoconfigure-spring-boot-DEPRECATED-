@@ -67,7 +67,7 @@ public class DataMongoTestSampleIT {
     @Test
     public void didNotInjectExampleController() {
         this.thrown.expect(NoSuchBeanDefinitionException.class);
-        this.applicationContext.getBean(ExampleController.class);
+        this.applicationContext.getBean(ExampleService.class);
     }
 
     @Configuration
