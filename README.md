@@ -1,3 +1,11 @@
+# IMPORTANT 
+
+You don't need this for Spring Boot >= 1.5.x, it's included now in Spring Boot itself, see:
+[41.3.10 Auto-configured Data MongoDB tests](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-testing-spring-boot-applications-testing-autoconfigured-mongo-test)
+
+-------
+
+
 # datamongotest-autoconfigure-spring-boot
 
 Provides a `@DataMongoTest` for the automatic configuration of tests with Spring Boot 1.4+.
